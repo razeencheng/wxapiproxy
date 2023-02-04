@@ -1,0 +1,15 @@
+name: Docker Image CI
+
+on:
+  create
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    environment: Docker
+    steps:
+    - uses: actions/checkout@v3
+    - name: Dokcer Login
+      run: echo ${{secrets.DOCKER_HUB_PASSWORD}} | docker login -u ${{vars.DOCKER_HUB_USER}} --password-stdin
+    - name: Build and Push the Docker image
+      run: make push
