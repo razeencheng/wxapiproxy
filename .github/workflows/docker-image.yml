@@ -13,3 +13,5 @@ jobs:
       run: echo ${{secrets.DOCKER_HUB_PASSWORD}} | docker login -u ${{vars.DOCKER_HUB_USER}} --password-stdin
     - name: Build and Push the Docker image
       run: make push
+    - name: Docker Logout
+      run: docker logout
